@@ -1,0 +1,222 @@
+export const mobile_data = [
+    {
+     "product_img": "https:\/\/m.media-amazon.com\/images\/I\/81T3olLXpUL._SX679_.jpg",
+     "product_name": "Samsung Galaxy M05 ",
+     "brand": "Samsung",
+     "ram": 4,
+     "storage": 64,
+     "battery": 5000,
+     "Price": 6999,
+     "screen_size": 6.7,
+     "camera": 50
+    },
+    {
+     "product_img": "https:\/\/m.media-amazon.com\/images\/I\/81scQ7qlPuL._SX679_.jpg",
+     "product_name": "Samsung Galaxy M15 ",
+     "brand": "Samsung",
+     "ram": 6,
+     "storage": 128,
+     "battery": 6000,
+     "Price": 13499,
+     "screen_size": 6.5,
+     "camera": 50
+    },
+    {
+     "product_img": "https:\/\/m.media-amazon.com\/images\/I\/81FZk5pGzFL._SX679_.jpg",
+     "product_name": "Samsung Galaxy M35 5G ",
+     "brand": "Samsung ",
+     "ram": 8,
+     "storage": 256,
+     "battery": 6000,
+     "Price": 23499,
+     "screen_size": 6.6,
+     "camera": 50
+    },
+    {
+     "product_img": "https:\/\/m.media-amazon.com\/images\/I\/81NRD3LJJEL._SX679_.jpg",
+     "product_name": "Samsung Galaxy A14",
+     "brand": "Samsung ",
+     "ram": 4,
+     "storage": 128,
+     "battery": 5000,
+     "Price": 12449,
+     "screen_size": 6.6,
+     "camera": 50
+    },
+    {
+     "product_img": "https:\/\/m.media-amazon.com\/images\/I\/913EiorAS0L._SL1500_.jpg",
+     "product_name": "Samsung Galaxy M14 ",
+     "brand": "Samsung ",
+     "ram": 4,
+     "storage": 64,
+     "battery": 5000,
+     "Price": 8279,
+     "screen_size": 6.7,
+     "camera": 50
+    },
+    {
+     "product_img": "https:\/\/m.media-amazon.com\/images\/I\/81Xl10tx7hL._SX679_.jpg",
+     "product_name": "OPPO A3 5G ",
+     "brand": "Oppo",
+     "ram": 6,
+     "storage": 128,
+     "battery": 5100,
+     "Price": 15999,
+     "screen_size": 6.7,
+     "camera": 50
+    },
+    {
+     "product_img": "https:\/\/m.media-amazon.com\/images\/I\/81CFCXH1tVL._SX679_.jpg",
+     "product_name": "OPPO F27 5G ",
+     "brand": "Oppo",
+     "ram": 8,
+     "storage": 128,
+     "battery": 5000,
+     "Price": 20999,
+     "screen_size": 6.67,
+     "camera": 50
+    },
+    {
+     "product_img": "https:\/\/m.media-amazon.com\/images\/I\/81SmCFYGRlL._SX679_.jpg",
+     "product_name": "OPPO A3X 4G ",
+     "brand": "Oppo",
+     "ram": 4,
+     "storage": 64,
+     "battery": 5100,
+     "Price": 8999,
+     "screen_size": 6.67,
+     "camera": 50
+    },
+    {
+     "product_img": "https:\/\/m.media-amazon.com\/images\/I\/81Tx+kozw2L._SX679_.jpg",
+     "product_name": "OPPO A3X 5G",
+     "brand": "Oppo",
+     "ram": 4,
+     "storage": 64,
+     "battery": 5100,
+     "Price": 12499,
+     "screen_size": 6.67,
+     "camera": 8
+    },
+    {
+     "product_img": "https:\/\/m.media-amazon.com\/images\/I\/81Tx+kozw2L._SX679_.jpg",
+     "product_name": "OPPO A3X 5G ",
+     "brand": "Oppo",
+     "ram": 4,
+     "storage": 128,
+     "battery": 5100,
+     "Price": 13499,
+     "screen_size": 6.67,
+     "camera": 8
+    },
+    {
+     "product_img": "https:\/\/m.media-amazon.com\/images\/I\/71NnrsYP63L._SX679_.jpg",
+     "product_name": "Redmi Note 13",
+     "brand": "Redmi",
+     "ram": 6,
+     "storage": 128,
+     "battery": 5000,
+     "Price": 15999,
+     "screen_size": 6.67,
+     "camera": 108
+    },
+    {
+     "product_img": "https:\/\/m.media-amazon.com\/images\/I\/81nMsYgIHdL._SX679_.jpg",
+     "product_name": "Redmi 13C ",
+     "brand": "Redmi",
+     "ram": 4,
+     "storage": 128,
+     "battery": 5000,
+     "Price": 9199,
+     "screen_size": 6.74,
+     "camera": 50
+    },
+    {
+     "product_img": "https:\/\/m.media-amazon.com\/images\/I\/71r0Ysx+oVL._SX679_.jpg",
+     "product_name": "realme NARZO N61 ",
+     "brand": "Realme",
+     "ram": 4,
+     "storage": 64,
+     "battery": 5000,
+     "Price": 7489,
+     "screen_size": 6.75,
+     "camera": 8
+    },
+    {
+     "product_img": "https:\/\/m.media-amazon.com\/images\/I\/71Qwha+BcbL._SX679_.jpg",
+     "product_name": "realme NARZO 70 Pro ",
+     "brand": "Realme",
+     "ram": 8,
+     "storage": 256,
+     "battery": 5000,
+     "Price": 16998,
+     "screen_size": 6.67,
+     "camera": 50
+    },
+    {
+     "product_img": "https:\/\/m.media-amazon.com\/images\/I\/51CG+lXrQIL._SX679_.jpg",
+     "product_name": "Vivo T3X 5G ",
+     "brand": "Vivo",
+     "ram": 4,
+     "storage": 128,
+     "battery": 5000,
+     "Price": 12870,
+     "screen_size": 6.72,
+     "camera": 64
+    },
+    {
+     "product_img": "https:\/\/m.media-amazon.com\/images\/I\/61VxzkiD1EL._SX679_.jpg",
+     "product_name": "Vivo T3 Lite 5G ",
+     "brand": "Vivo",
+     "ram": 4,
+     "storage": 128,
+     "battery": 5000,
+     "Price": 10834,
+     "screen_size": 6.56,
+     "camera": 8
+    },
+    {
+     "product_img": "https:\/\/m.media-amazon.com\/images\/I\/61Coi7KOHiL._SX679_.jpg",
+     "product_name": "vivo Y18i ",
+     "brand": "Vivo",
+     "ram": 4,
+     "storage": 64,
+     "battery": 5000,
+     "Price": 13499,
+     "screen_size": 6.56,
+     "camera": 13
+    },
+    {
+     "product_img": "https:\/\/m.media-amazon.com\/images\/I\/61Gl4860bcL._SX679_.jpg",
+     "product_name": "Motorola All-New A10 ",
+     "brand": "Moto",
+     "ram": 0.03,
+     "storage": 32,
+     "battery": 800,
+     "Price": 1209,
+     "screen_size": 2.5,
+     "camera": 2
+    },
+    {
+     "product_img": "https:\/\/m.media-amazon.com\/images\/I\/71zoUhd6fXL._SX679_.jpg",
+     "product_name": "Moto G85 ",
+     "brand": "Moto",
+     "ram": 8,
+     "storage": 128,
+     "battery": 5000,
+     "Price": 19500,
+     "screen_size": 6.67,
+     "camera": 50
+    },
+    {
+     "product_img": "https:\/\/m.media-amazon.com\/images\/I\/81dl4dQY3BL._SX569_.jpg",
+     "product_name": "Motorola G45 ",
+     "brand": "Moto",
+     "ram": 4,
+     "storage": 128,
+     "battery": 5000,
+     "Price": 11834,
+     "screen_size": 6.5,
+     "camera": 50
+    }
+   ]

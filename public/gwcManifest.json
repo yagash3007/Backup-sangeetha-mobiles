@@ -1,0 +1,152 @@
+{
+  "name": "Initiative Media-(MP Application)",
+  "version": "0.0.1",
+  "size": {
+    "width": 3,
+    "height": 3
+  },
+  "mapping": [],
+  "collections": [
+    {
+      "name": "IM-Clients",
+      "schema": {
+        "columns": [
+          { "name": "client", "type": "STRING" },
+          { "name": "Brands", "type": "STRING" }
+        ]
+      },
+      "syncEnabled": true
+    },
+    {
+      "name": "IM-Brands",
+      "schema": {
+        "columns": [
+          { "name": "client", "type": "STRING" },
+          { "name": "brands", "type": "STRING" }
+        ]
+      },
+      "syncEnabled": true
+    },
+    {
+      "name": "IM-MediaPlans",
+      "schema": {
+        "columns": [
+          { "name": "client", "type": "STRING" },
+          { "name": "brand", "type": "STRING" },
+          { "name": "name", "type": "STRING" },
+          { "name": "campaignStart", "type": "STRING" },
+          { "name": "campaignEnd", "type": "STRING" },
+          { "name": "coreName", "type": "STRING" },
+          { "name": "jobNumber", "type": "STRING" },
+          { "name": "foodNonFood", "type": "STRING" },
+          { "name": "campaign", "type": "STRING" },
+          { "name": "approval_Status", "type": "STRING" },
+          { "name": "version", "type": "LONG" },
+          { "name": "new_Version", "type": "STRING" },
+          { "name": "lineItems", "type": "STRING" },
+          { "name": "line_Items_ids", "type": "STRING" }
+        ]
+      },
+      "syncEnabled": true
+    },
+
+    {
+      "name": "IM-LineItems",
+      "schema": {
+        "columns": [
+          { "name": "Name", "type": "STRING" },
+          { "name": "Objective_id", "type": "STRING" },
+          { "name": "Budget", "type": "DOUBLE" },
+          { "name": "Currency_id", "type": "STRING" },
+          { "name": "Channel_id", "type": "STRING" },
+          { "name": "Publisher_id", "type": "STRING" },
+          { "name": "Placement_id", "type": "STRING" },
+          { "name": "Format_id", "type": "STRING" },
+          { "name": "Buying_model", "type": "STRING" },
+          { "name": "Media_Plan_id", "type": "STRING" }
+        ]
+      },
+      "syncEnabled": true
+    },
+
+    {
+      "name": "IM-Currencies",
+      "schema": {
+        "columns": [{ "name": "Currency", "type": "STRING" }]
+      },
+      "syncEnabled": true
+    },
+
+    {
+      "name": "IM-Objectives",
+      "schema": {
+        "columns": [
+          { "name": "Name", "type": "STRING" },
+          { "name": "Short", "type": "STRING" }
+        ]
+      },
+      "syncEnabled": true
+    },
+
+    {
+      "name": "IM-Channels",
+      "schema": {
+        "columns": [
+          { "name": "Name", "type": "STRING" },
+          { "name": "Short", "type": "STRING" },
+          { "name": "Order", "type": "LONG" }
+        ]
+      },
+      "syncEnabled": true
+    },
+
+    {
+      "name": "IM-Publishers",
+      "schema": {
+        "columns": [
+          { "name": "Category", "type": "STRING" },
+          { "name": "Name", "type": "STRING" },
+          { "name": "Short", "type": "STRING" },
+          { "name": "Placements_ids", "type": "STRING" },
+          { "name": "Channel_ids", "type": "STRING" }
+        ]
+      },
+      "syncEnabled": true
+    },
+
+    {
+      "name": "IM-Placements",
+      "schema": {
+        "columns": [
+          { "name": "Name", "type": "STRING" },
+          { "name": "Short", "type": "STRING" }
+        ]
+      },
+      "syncEnabled": true
+    },
+
+    {
+      "name": "IM-Formats",
+      "schema": {
+        "columns": [{ "name": "Name", "type": "STRING" }]
+      },
+      "syncEnabled": true
+    },
+
+    {
+      "name": "IM-Adserving",
+      "schema": {
+        "columns": [
+          { "name": "AdSpecs", "type": "STRING" },
+          { "name": "Buy_Type", "type": "STRING" },
+          { "name": "Max_File_Size", "type": "STRING" },
+          { "name": "Supplier", "type": "STRING" },
+          { "name": "Costs", "type": "DOUBLE" }
+        ]
+      },
+      "syncEnabled": true
+    }
+  ],
+  "id": "76a05931-bcee-400d-8458-68335e825d35",
+  "proxyId": "1c6a4bd9-2870-436a-9099-e0b0cd2157b7"
+}
