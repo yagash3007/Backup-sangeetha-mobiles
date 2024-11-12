@@ -218,5 +218,127 @@ export const mobile_data = [
      "Price": 11834,
      "screen_size": 6.5,
      "camera": 50
-    }
+    },
+    {
+        "product_img": "https:\/\/m.media-amazon.com\/images\/I\/61lLjrvDEkL._SX679_.jpg",
+        "product_name": "Apple iPhone 16 (128 GB) - White",
+        "brand": "Apple",
+        "ram": 128,
+        "storage": 128,
+        "battery": 5000,
+        "Price": 77990,
+        "screen_size": 6.1,
+        "camera": 108
+       },
+       {
+        "product_img": "https:\/\/m.media-amazon.com\/images\/I\/61bK6PMOC3L._SX679_.jpg",
+        "product_name": "Apple iPhone 14 (128 GB) - Blue",
+        "brand": "Apple",
+        "ram": 128,
+        "storage": 128,
+        "battery": 5000,
+        "Price": 54900,
+        "screen_size": 6.1,
+        "camera": 64
+       },
+       {
+        "product_img": "https:\/\/m.media-amazon.com\/images\/I\/71GLMJ7TQiL._SX679_.jpg",
+        "product_name": "Apple iPhone 13 (128GB) - Starlight",
+        "brand": "Apple",
+        "ram": 8,
+        "storage": 128,
+        "battery": 5000,
+        "Price": 45499,
+        "screen_size": 6.1,
+        "camera": 12
+       },
+       {
+        "product_img": "https:\/\/m.media-amazon.com\/images\/I\/61VuVU94RnL._SX679_.jpg",
+        "product_name": "Apple iPhone 13 (128GB) - Midnight",
+        "brand": "Apple",
+        "ram": 8,
+        "storage": 128,
+        "battery": 5100,
+        "Price": 45499,
+        "screen_size": 6.1,
+        "camera": 12
+       },
+       {
+        "product_img": "https:\/\/m.media-amazon.com\/images\/I\/615O-NFQKdL._SX679_.jpg",
+        "product_name": "Apple iPhone 16 (128 GB) - Black",
+        "brand": "Apple",
+        "ram": 128,
+        "storage": 128,
+        "battery": 5000,
+        "Price": 78400,
+        "screen_size": 6.1,
+        "camera": 48
+       },
+       {
+        "product_img": "https:\/\/m.media-amazon.com\/images\/I\/71d7rfSl0wL._SX679_.jpg",
+        "product_name": "Apple iPhone 15 (128 GB) - Blue",
+        "brand": "Apple",
+        "ram": 8,
+        "storage": 128,
+        "battery": 5000,
+        "Price": 65900,
+        "screen_size": 6.1,
+        "camera": 48
+       },
+       {
+        "product_img": "https:\/\/m.media-amazon.com\/images\/I\/719LcA76E5L._SX679_.jpg",
+        "product_name": "POCO M6 5G, Orion Blue (4GB, 64GB)",
+        "brand": "Poco",
+        "ram": 4,
+        "storage": 64,
+        "battery": 5000,
+        "Price": 7999,
+        "screen_size": 17.12,
+        "camera": 50
+       },
+       {
+        "product_img": "https://m.media-amazon.com/images/I/71jWhIexDHL._SL1500_.jpg",
+        "product_name": "POCO C61 Diamond Dust Black 4GB RAM 64GB ROM",
+        "brand": "Poco",
+        "ram": 4,
+        "storage": 64,
+        "battery": 5000,
+        "Price": 6299,
+        "screen_size": 17.4,
+        "camera": 8
+       },
+       {
+        "product_img": "https:\/\/m.media-amazon.com\/images\/I\/71jWhIexDHL._SX679_.jpg",
+        "product_name": "POCO M6 5G",
+        "brand": "Poco",
+        "ram": 4,
+        "storage": 64,
+        "battery": 5000,
+        "Price": 7999,
+        "screen_size": 17.4,
+        "camera": 50
+       },
+       {
+        "product_img": "https:\/\/m.media-amazon.com\/images\/I\/712tqhtIw1L._SL1500_.jpg",
+        "product_name": "POCO C61",
+        "brand": "poco",
+        "ram": 4,
+        "storage": 64,
+        "battery": 5000,
+        "Price": 6299,
+        "screen_size": 6.71,
+        "camera": 8
+       },
+       {
+        "product_img": "https:\/\/m.media-amazon.com\/images\/I\/714PgXMVpQL._SL1500_.jpg",
+        "product_name": "POCO X6 Neo 5G",
+        "brand": "Poco",
+        "ram": 8,
+        "storage": 128,
+        "battery": 5000,
+        "Price": 13499,
+        "screen_size": 6.67,
+        "camera": 108
+       }
+      
    ]
