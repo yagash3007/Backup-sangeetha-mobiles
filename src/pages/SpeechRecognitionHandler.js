@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { FaMicrophone, FaMicrophoneSlash } from "react-icons/fa";
 import { GenAiMenu } from "./genAi";
 import alasql from "alasql";
-import { toast } from "react-toastify"; // Import toast from react-toastify
-import ExcelJS from 'exceljs'; // Import ExcelJS
+import { toast } from "react-toastify"; 
+import ExcelJS from 'exceljs'; 
 
 const SpeechRecognitionHandler = ({
   setFilteredData,
@@ -69,21 +69,26 @@ const SpeechRecognitionHandler = ({
       stopListening();
 
       const result = await GenAiMenu(currentTranscript);
+      console.log("Generated SQL Queries:", result); 
 
       let foundProducts = false;
 
-      // Handle exact query
+      
       if (result.exactQuery) {
         const exactProducts = alasql(result.exactQuery);
+        console.log("ExactProducts",exactProducts);
+        
         if (exactProducts.length > 0) {
           setFilteredData(exactProducts);
           foundProducts = true;
         }
       }
 
-      // Handle recommendation query
+      
       if (result.recommendationQuery) {
         const recommendedProducts = alasql(result.recommendationQuery);
+        console.log("recommendedProducts",recommendedProducts);
+        
         if (recommendedProducts.length > 0) {
           setRecommendedData(recommendedProducts);
           foundProducts = true;
@@ -92,20 +97,20 @@ const SpeechRecognitionHandler = ({
 
       if (!foundProducts) {
         toast.error("No products available for your request.");
-        onNoResults(); // Notify that no results were found
+        onNoResults(); 
       } else {
         toast.success("Search completed successfully!");
       }
 
-      // Notify HomePage that the speech recognition has been processed
+      
       onSpeechProcessed();
 
-      // Save transcript data in localStorage
+      
       saveTranscriptToLocalStorage(currentTranscript);
     } catch (error) {
       console.error("Error processing transcript:", error);
       toast.error("Error processing your request. Please try again.");
-      onNoResults(); // Notify that no results were found
+      onNoResults(); 
     } finally {
       setStatus("idle");
     }
@@ -211,3 +216,7 @@ const SpeechRecognitionHandler = ({
 };
 
 export default SpeechRecognitionHandler;
+
+
+
+

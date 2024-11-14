@@ -1,59 +1,80 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";  
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const apiKey = "AIzaSyB8sj23ffW1rf5UlhVJU2Nms18GC4VVpYQ";  
-const genAI = new GoogleGenerativeAI(apiKey);  
+const genAI = new GoogleGenerativeAI(apiKey);
 
 export const GenAiMenu = async (transcript) => {
   try {
     const prompt = `
-      Analyze this sales transcript and generate two SQL queries in the following exact format:
+      Analyze the following sales transcript and generate two SQL queries in the exact format below based on the product mentioned in the transcript:
 
-      Exact Match Query:
-      SELECT ... FROM mobile_data WHERE ...
+      - If the sales person talks about **headphones** or mentions related terms like **buds**, **headset**, etc.,dont make exact match like operator generate queries using the \`headphone_data\` table.
+      - If the sales person talks about **mobiles** or mentions related terms like **smartphone**, **mobile**, **cell phone**, etc., generate queries using the \`mobile_data\` table.
 
-      Recommended Products Query:
-      SELECT ... FROM mobile_data WHERE ...
+      Please generate only one set of queries based on the product type mentioned in the transcript. The queries should be in the following format:
 
-      Each query should retrieve fields like brand, product_img, product_name, ram, screen_size, storage, battery, camera, price.
-      The fields ram, screen_size, camera, price, and battery in the mobile_data table are stored as integers.
-      The exact match query should filter products based on strict match criteria, while the recommended products query should filter for similar products based on the same or other brands (Samsung, Realme, Oppo, Motorola, iPhone, etc.) and integer averages for brand, ram, screen_size, and battery values.
+      datatypes:-
+      price : int
+      ram : int
+      screen_size : double
+      storage : int
+      battery : int
+      
+      1. **Exact Match Query**:
+         - For **headphones**, retrieve fields: \`brand\`, \`product_img\`, \`product_name\`, \`price\` from the \`headphone_data\` table.
+         - For **mobile**, retrieve fields: \`brand\`, \`product_img\`, \`product_name\`, \`ram\`, \`screen_size\`, \`storage\`, \`battery\`, \`price\` from the \`mobile_data\` table.
 
-      Transcript:
-      ${transcript}
+      2. **Recommendation Query**:
+         - Provide a recommendation for **headphones** or **mobiles** based on matching **brand**, **battery**, **screen size**, **ram**, **price** specifications.
 
-      Return only the queries in the specified format, using integer comparisons where needed.
+      Please ensure that the queries are generated with **SQL syntax** and **use proper query formatting**. Include the \`EXACT_MATCH_QUERY:\` and \`RECOMMENDED_PRODUCTS_QUERY:\` markers at the beginning of each query result.
+
+      for recommendation query use any price range,ram range brand which matches the  products generate query give random values
+
+      Example format of response:
+      \`\`\`
+      EXACT_MATCH_QUERY: <Your SQL query for exact match>
+      RECOMMENDED_PRODUCTS_QUERY: <Your SQL query for recommendations>
+      \`\`\`
+
+      Transcript: "${transcript}"
     `;
-  
-    const result = await genAI
-      .getGenerativeModel({ model: "gemini-1.5-flash" })
-      .generateContent(prompt);
 
-    if (result.response.candidates.length > 0) {
-      const queriesText = result.response.candidates[0].content.parts[0].text.trim();
-      const cleanedText = queriesText
-        .replace(/```sql/g, "")
-        .replace(/```/g, "")
-        .replace(/##/g, "")
-        .trim();
+    
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const result = await model.generateContent(prompt);
+    const response = result.response.text().trim();
 
-      // Use regex to extract the queries from the cleaned text
-      const exactMatchRegex = /Exact Match Query:\s*(SELECT.*?FROM.*?)(?=\n\s*\n|$)/s;
-      const recommendedQueryRegex = /Recommended Products Query:\s*(SELECT.*?FROM.*?)(?=\n\s*\n|$)/s;
+    console.log("Raw API Response:", response);
 
-      const exactMatchMatch = exactMatchRegex.exec(cleanedText);
-      const recommendedQueryMatch = recommendedQueryRegex.exec(cleanedText);
+    const queries = {
+      exactQuery: "",
+      recommendationQuery: "",
+    };
 
-      // Make sure these variables are properly assigned
-      const exactQuery = exactMatchMatch ? exactMatchMatch[1].trim() : "";
-      const recommendationQuery = recommendedQueryMatch ? recommendedQueryMatch[1].trim() : "";
+    const exactMatchMarker = "EXACT_MATCH_QUERY:";
+    const recommendedMarker = "RECOMMENDED_PRODUCTS_QUERY:";
 
-      // Return the queries
-      return { exactQuery, recommendationQuery };
+   
+    if (response.includes(exactMatchMarker) && response.includes(recommendedMarker)) {
+      const exactStartIndex = response.indexOf(exactMatchMarker) + exactMatchMarker.length;
+      const exactEndIndex = response.indexOf(recommendedMarker);
+      queries.exactQuery = response.slice(exactStartIndex, exactEndIndex).trim().replace(/```sql/g, '').replace(/```/g, '').trim();
+
+      const recStartIndex = response.indexOf(recommendedMarker) + recommendedMarker.length;
+      queries.recommendationQuery = response.slice(recStartIndex).trim().replace(/```sql/g, '').replace(/```/g, '').trim();
+
+     
+      console.log("Exact Match Query:", queries.exactQuery);
+      console.log("Recommendation Query:", queries.recommendationQuery);
+
+      return queries;
+    } else {
+      console.error("Response does not contain expected markers:", response);
+      return { exactQuery: "", recommendationQuery: "" };
     }
-
-    return { exactQuery: "", recommendationQuery: "" };
   } catch (error) {
-    console.error("Error with GenAI API:", error);
+    console.error("Error in GenAiMenu:", error);
     return { exactQuery: "", recommendationQuery: "" };
   }
 };

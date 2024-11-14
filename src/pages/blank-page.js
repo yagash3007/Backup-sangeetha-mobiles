@@ -4,8 +4,9 @@ import ProductCards from "./ProductCards";
 import { mobile_data } from "../helpers/data";
 import AlertSnackbar from "./AlertSnackbar";
 import alasql from "alasql";
-import { ToastContainer } from "react-toastify"; // Import ToastContainer
-import "react-toastify/dist/ReactToastify.css"; // Import CSS for Toastify
+import { ToastContainer } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css"; 
+import { headphones } from "../helpers/headphones";
 
 const HomePage = () => {
   const [filteredData, setFilteredData] = useState([]);
@@ -13,17 +14,22 @@ const HomePage = () => {
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [status, setStatus] = useState("idle");
-  const [isSpeechProcessed, setIsSpeechProcessed] = useState(false); // State to track if speech recognition is processed
-  const [noResultsMessage, setNoResultsMessage] = useState(""); // State to track "Currently not available" message
+  const [isSpeechProcessed, setIsSpeechProcessed] = useState(false); 
+  const [noResultsMessage, setNoResultsMessage] = useState("");
 
-  // Initialize mobile data in alasql
+  
   useEffect(() => {
     try {
       alasql(
         "CREATE TABLE IF NOT EXISTS mobile_data (brand STRING, ram INT, screen_size INT, storage INT, battery INT, camera INT, price INT, product_name STRING, product_img STRING)"
       );
+      alasql(
+        "CREATE TABLE IF NOT EXISTS headphone_data (product_img STRING, product_name STRING, price INT, brand STRING)"
+      );
       alasql("DELETE FROM mobile_data");
-
+      alasql("DELETE FROM headphone_data");
+  
+     
       mobile_data.forEach((item) => {
         alasql("INSERT INTO mobile_data VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", [
           item.brand,
@@ -37,6 +43,25 @@ const HomePage = () => {
           item.product_img,
         ]);
       });
+      const allmobiledata = alasql("SELECT * FROM mobile_data");
+      console.log('allmobiledata',allmobiledata);
+      
+  
+      
+      headphones.forEach((item) => {
+       
+        alasql("INSERT INTO headphone_data VALUES (?, ?, ?, ?)", [
+          item.product_img,
+          item.product_name,
+          item.price,
+          item.brand
+        ]);
+      });
+  
+    
+      const allHeadphones = alasql("SELECT * FROM headphone_data");
+      console.log("All Headphones Data:", allHeadphones); 
+  
     } catch (error) {
       console.error("Error initializing database:", error);
       setSnackbarMessage("Error initializing database. Please refresh the page.");
@@ -44,12 +69,12 @@ const HomePage = () => {
     }
   }, []);
 
-  // When speech recognition is processed, update the state
+ 
   const handleSpeechProcessed = () => {
     setIsSpeechProcessed(true);
   };
 
-  // Handle case when no results are found for the query
+ 
   const handleNoResults = () => {
     setNoResultsMessage("Currently not available");
   };
@@ -64,17 +89,17 @@ const HomePage = () => {
           setOpenSnackbar={setOpenSnackbar}
           status={status}
           setStatus={setStatus}
-          onSpeechProcessed={handleSpeechProcessed} // Pass a callback for when speech is processed
-          onNoResults={handleNoResults} // Pass a callback to handle no results
+          onSpeechProcessed={handleSpeechProcessed} 
+          onNoResults={handleNoResults}
         />
         <div className="col-span-3 bg-gray-50 items-center">
-          {/* Product Matches Section */}
+          
           {isSpeechProcessed ? (
             <>
               {filteredData.length > 0 ? (
                 <>
                   <h2 className="text-xl font-semibold mb-4">Product Matches</h2>
-                  <ProductCards data={filteredData.slice(0, 3)} />
+                  <ProductCards data={filteredData.slice(0,3)} />
                 </>
               ) : (
                 <p>{noResultsMessage}</p>
@@ -84,13 +109,13 @@ const HomePage = () => {
             <p></p>
           )}
 
-          {/* Recommended Products Section */}
+         
           {isSpeechProcessed ? (
             <>
               {recommendedData.length > 0 ? (
                 <>
                   <h2 className="text-xl font-semibold mt-8 mb-4">Recommended Products</h2>
-                  <ProductCards data={recommendedData.slice(0, 3)} />
+                  <ProductCards data={recommendedData.slice(0,3)} />
                 </>
               ) : (
                 <p>{}</p>
