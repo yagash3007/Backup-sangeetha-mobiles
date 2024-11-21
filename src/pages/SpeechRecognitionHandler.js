@@ -12,8 +12,8 @@ const SpeechRecognitionHandler = ({
   setOpenSnackbar,
   status,
   setStatus,
-  onSpeechProcessed, // Callback to notify when speech recognition has been processed
-  onNoResults, // Callback to notify when no products are found
+  onSpeechProcessed, 
+  onNoResults,
 }) => {
   const [transcript, setTranscript] = useState("");
   const [isListening, setIsListening] = useState(false);
@@ -69,48 +69,49 @@ const SpeechRecognitionHandler = ({
       stopListening();
 
       const result = await GenAiMenu(currentTranscript);
-      console.log("Generated SQL Queries:", result); 
+      console.log("Generated SQL Queries:", result); // Log the result from GenAiMenu
 
       let foundProducts = false;
+      let generatedSqlQueries = []; // Array to store SQL queries
 
-      
       if (result.exactQuery) {
         const exactProducts = alasql(result.exactQuery);
-        console.log("ExactProducts",exactProducts);
-        
+        console.log("ExactProducts", exactProducts);
+
         if (exactProducts.length > 0) {
           setFilteredData(exactProducts);
           foundProducts = true;
         }
+        generatedSqlQueries.push(result.exactQuery); // Add the exactQuery to the array
       }
 
-      
       if (result.recommendationQuery) {
         const recommendedProducts = alasql(result.recommendationQuery);
-        console.log("recommendedProducts",recommendedProducts);
-        
+        console.log("RecommendedProducts", recommendedProducts);
+
         if (recommendedProducts.length > 0) {
           setRecommendedData(recommendedProducts);
           foundProducts = true;
         }
+        generatedSqlQueries.push(result.recommendationQuery); // Add the recommendationQuery to the array
       }
 
       if (!foundProducts) {
         toast.error("No products available for your request.");
-        onNoResults(); 
+        onNoResults();
       } else {
         toast.success("Search completed successfully!");
       }
 
-      
       onSpeechProcessed();
 
-      
-      saveTranscriptToLocalStorage(currentTranscript);
+      console.log("Generated SQL Queries to save:", generatedSqlQueries); // Log the queries to check before saving
+      saveTranscriptToLocalStorage(currentTranscript, generatedSqlQueries); // Save to localStorage
+
     } catch (error) {
       console.error("Error processing transcript:", error);
       toast.error("Error processing your request. Please try again.");
-      onNoResults(); 
+      onNoResults();
     } finally {
       setStatus("idle");
     }
@@ -132,18 +133,22 @@ const SpeechRecognitionHandler = ({
     }
   };
 
-  const saveTranscriptToLocalStorage = (transcriptText) => {
+  const saveTranscriptToLocalStorage = (transcriptText, generatedSqlQueries) => {
     const timestamp = new Date().toISOString();
     const newTranscriptData = {
       timestamp,
       transcript: transcriptText,
       status: "completed",
+      generatedSqlQueries: generatedSqlQueries, // Store the SQL queries
     };
 
+    // Retrieve existing data or create a new array if not present
     const existingData = JSON.parse(localStorage.getItem("transcripts")) || [];
     existingData.push(newTranscriptData);
+
+    // Store the updated data in localStorage
     localStorage.setItem("transcripts", JSON.stringify(existingData));
-    console.log("Current transcripts data:", JSON.parse(localStorage.getItem("transcripts")));
+    console.log("Current transcripts data with SQL queries:", JSON.parse(localStorage.getItem("transcripts")));
   };
 
   // Function to convert localStorage data to Excel and download it
@@ -151,30 +156,39 @@ const SpeechRecognitionHandler = ({
     const transcriptData = JSON.parse(localStorage.getItem("transcripts")) || [];
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet('Transcripts');
-
+  
     // Set up headers for Excel file
     worksheet.columns = [
       { header: 'Timestamp', key: 'timestamp', width: 30 },
       { header: 'Transcript', key: 'transcript', width: 50 },
       { header: 'Status', key: 'status', width: 20 },
+      { header: 'Generated SQL Queries', key: 'generatedSqlQueries', width: 70 }, // New column for SQL queries
     ];
-
+  
     // Add rows from localStorage data
     transcriptData.forEach((item) => {
-      worksheet.addRow(item);
+      // Ensure 'generatedSqlQueries' is an array, if not, set it to an empty array
+      const sqlQueries = Array.isArray(item.generatedSqlQueries) ? item.generatedSqlQueries : [];
+      worksheet.addRow({
+        timestamp: item.timestamp,
+        transcript: item.transcript,
+        status: item.status,
+        generatedSqlQueries: sqlQueries.join(", "), // Join SQL queries if available
+      });
     });
-
+  
     // Save the file
     workbook.xlsx.writeBuffer().then((buffer) => {
       const blob = new Blob([buffer], { type: 'application/octet-stream' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'transcripts.xlsx';
+      a.download = 'transcripts_with_sql_queries.xlsx';
       a.click();
       URL.revokeObjectURL(url);
     });
   };
+  
 
   return (
     <div className="col-span-1 bg-white rounded-lg shadow-lg p-6 flex flex-col items-center">
@@ -216,7 +230,3 @@ const SpeechRecognitionHandler = ({
 };
 
 export default SpeechRecognitionHandler;
-
-
-
-
